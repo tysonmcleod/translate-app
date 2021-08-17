@@ -1,8 +1,12 @@
+import AppContainer from "../../hoc/AppContainer"
+
 const Profile = () => {
     return (
-        <div>
-            <h1> Welcome ... </h1>
-        </div>
+        <AppContainer>
+            <div>
+                <h1 className="animate__animated animate__bounceInDown"> Welcome ... </h1>
+            </div>
+        </AppContainer>
     )
 }
 

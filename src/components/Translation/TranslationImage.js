@@ -1,6 +1,6 @@
 function TranslationImage(props) {
     return (
-        <img src={props.src} />
+        <img src={props.src} alt="" width="7%" />
     )
 }
 

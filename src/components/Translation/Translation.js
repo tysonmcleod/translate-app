@@ -18,6 +18,8 @@ const Translation = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
+        //Should spaces be included?
+
         setWord({
             ...word,
             letters: word.word.split('')
@@ -31,7 +33,7 @@ const Translation = () => {
             body: JSON.stringify({
                 word: word.word,
                 //author: localStorage.getItem('name')
-                //Spara usern som gjort översättningen på något sätt
+                //TODO Save the user who has made the translation
             })
         })
     }
@@ -47,16 +49,15 @@ const Translation = () => {
                 </div>
 
                 <div className="form-group mt-3">
-                    <label htmlFor="translationArea">Translation</label>
-                    <div id="translationArea" className="form-control">
+                    <h3>Translation</h3>
+                    <div id="translationArea">
                         {word.letters.map((letter, index) => {
-                            return <TranslationImage src={`./resources/individial_signs/${letter}.png`} />
+                            return <TranslationImage src={`./resources/individial_signs/${letter}.png`} key={index} />
                         })}
                     </div>
                 </div>
             </form>
         </AppContainer>
-        
     )
 }
 

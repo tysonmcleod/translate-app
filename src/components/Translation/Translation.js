@@ -22,6 +22,18 @@ const Translation = () => {
             ...word,
             letters: word.word.split('')
         })
+
+        await fetch('http://localhost:3010/translations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                word: word.word,
+                //author: localStorage.getItem('name')
+                //Spara usern som gjort översättningen på något sätt
+            })
+        })
     }
 
     return (

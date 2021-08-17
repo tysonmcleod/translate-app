@@ -1,12 +1,18 @@
 {
-  "users":[
-      {   "id": 1,
-          "name": "John"
-          
-      },
-      {   "id": 2,
-          "name": "RK"
-          
-      }
+  "users": [
+    {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "RK"
+    }
+  ],
+  "translations": [
+    {
+      "word": "asdasd",
+      "id": 1
+    }
   ]
 }

@@ -5,7 +5,7 @@ import { getStorage, clearStorage } from "../../storage";
 
 const Profile = () => {
     const history = useHistory();
-    const [data, setPosts] = useState(null)
+    const [data, setData] = useState(null)
     const user = getStorage("name");
     const POST_URL = "http://localhost:3010/translations/"
     const FILTERED_POST_URL = "http://localhost:3010/translations?_sort=id&_order=desc&_limit=10&status=active&author=";
@@ -34,7 +34,7 @@ const Profile = () => {
         })
         .then(response => response.json())
         .then(data=> {
-            setPosts(data);
+            setData(data);
         })
         .catch((error) => {
             console.error('Error', error);
@@ -60,7 +60,7 @@ const Profile = () => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    setPosts(null)
+                    setData(null)
                 })
                 .catch((error) =>{
                     console.error('Error:', error);

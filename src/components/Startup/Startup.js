@@ -25,7 +25,9 @@ const Startup = () => {
         setName(event.target.value);
     }
 
-    // A reaaallly bad way of checking if a user exists 
+    /**
+     * A function used to check if a user exists.
+     */
     const checkUserInDatabase = async () => {
         const USER_URL = "http://localhost:3010/users?name=" + getStorage('name');
         const response = await fetch(USER_URL);
@@ -70,7 +72,7 @@ const Startup = () => {
                 <div className="input-group mb-3">
                 <input type="text" className="form-control" placeholder="What is your name?" onChange= {handleNameChange} />
                 <div className="input-group-append">
-                    <button className="btn btn-primary" type="button" onClick={handleSubmitNameClick}>Translate</button>
+                    <button className="btn btn-primary" type="button" onClick={handleSubmitNameClick}>Submit</button>
                 </div>
             </div>
             </form>

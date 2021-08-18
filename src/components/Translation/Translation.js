@@ -35,8 +35,6 @@ const Translation = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        //Should spaces be included?
-
         setWord({
             ...word,
             letters: word.word.split('')
@@ -59,8 +57,9 @@ const Translation = () => {
         <AppContainer>
             <h1 className="text-center mt-5"> Welcome to the translation page </h1>
             <form className="w-50 m-auto mt-5" onSubmit={ handleSubmit }>
+                <p>What would you like to translate</p>
                 <div className="input-group mb-3">
-                    <input id="word" type="text" className="form-control mb-2" placeholder="What would you like to translate?" onChange={ handleInputChange }/>
+                    <input id="word" type="text" className="form-control mb-2" placeholder="Enter your text" onChange={ handleInputChange }/>
                     <div className="input-group-append">
                         <button type="submit" className="btn btn-primary">Translate</button>
                     </div>

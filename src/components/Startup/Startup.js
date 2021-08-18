@@ -8,12 +8,19 @@ const Startup = () => {
     const history = useHistory();
 
     const user = getStorage("name");
+
+    /**
+     * If the user is already logged in, redirect to the translation page.
+     */
     useEffect(() =>{
         if(user){
             history.push('/translation');
         }
     })
 
+    /**
+     * Tracks the name inputted from the user, and updates the state if it changes.
+     */
     const handleNameChange = event => {
         setName(event.target.value);
     }
@@ -29,7 +36,11 @@ const Startup = () => {
         return true;
     }
 
-
+    /**
+     * When the user submits their chosen name, it is firstly added to the local storage. Then we check the database to see if the name is already in there. 
+     * If it is, the user is routed to the translation page. If it is not, the name is added to the database if it is a valid name,
+     * otherwise the user is prompted to input a valid name.
+     */
     const handleSubmitNameClick = async () => {
         setStorage("name", name);
         const userInDatabase = await checkUserInDatabase();
@@ -48,18 +59,21 @@ const Startup = () => {
             history.push("/translation");
         }else{
             clearStorage('name');
-            alert('Invalid input');
+            alert('Invalid input! Please enter a valid name, consisting of only letters');
         }
     }
 
     return (
         <AppContainer>
-            <div>
-                <h1> Hey welcome to the translate app</h1>
-                <p className="mt-3"> What is your name? </p>
-                <input type="text" onChange= {handleNameChange} />
-                <button onClick={handleSubmitNameClick}> Submit name</button>
+            <h1 className="text-center mt-5"> Welcome to the translation app</h1>
+            <form className="w-50 m-auto mt-5">
+                <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="What is your name?" onChange= {handleNameChange} />
+                <div className="input-group-append">
+                    <button className="btn btn-primary" type="button" onClick={handleSubmitNameClick}>Translate</button>
+                </div>
             </div>
+            </form>
         </AppContainer>     
     )
 }

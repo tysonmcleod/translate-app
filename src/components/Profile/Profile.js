@@ -82,9 +82,7 @@ const Profile = () => {
 
     return (
         <main>   
-            <NavBar>
-            
-            </NavBar>     
+            <NavBar/>     
             <AppContainer>
                 <div className="mt-5">
                     <h1 className="animate__animated animate__bounceInDown"> Welcome {user} </h1>

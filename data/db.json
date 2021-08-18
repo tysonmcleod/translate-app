@@ -1,4 +1,28 @@
 {
-  "users": [],
-  "translations": []
+  "users": [
+    {
+      "name": "Kalle",
+      "id": 1
+    },
+    {
+      "name": "Kalle",
+      "id": 2
+    }
+  ],
+  "translations": [
+    {
+      "word": "asdasd",
+      "id": 1
+    },
+    {
+      "word": "asdasd",
+      "id": 2
+    },
+    {
+      "word": "hej",
+      "author": "Kalle",
+      "status": "active",
+      "id": 3
+    }
+  ]
 }

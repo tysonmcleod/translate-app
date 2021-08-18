@@ -54,12 +54,15 @@ const Startup = () => {
 
     return (
         <AppContainer>
-            <div>
-                <h1> Hey welcome to the translate app</h1>
-                <p className="mt-3"> What is your name? </p>
-                <input type="text" onChange= {handleNameChange} />
-                <button onClick={handleSubmitNameClick}> Submit name</button>
+            <h1 className="text-center mt-5"> Welcome to the translation app</h1>
+            <form className="w-25 m-auto mt-5">
+                <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="What is your name?" />
+                <div className="input-group-append">
+                    <button className="btn btn-primary" type="button">Translate</button>
+                </div>
             </div>
+            </form>
         </AppContainer>     
     )
 }

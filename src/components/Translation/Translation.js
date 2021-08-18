@@ -60,7 +60,9 @@ const Translation = () => {
                     </div>
                 </div>
             </form>
-            <div className="mt-3 p-4 w-75 m-auto">
+
+            { word.letters.length > 0 && 
+                <div className="mt-3 p-4 w-75 m-auto">
                     <h3 className="text-center">Translation</h3>
                     <div id="translationArea">
                         {word.letters.map((letter, index) => {
@@ -68,6 +70,7 @@ const Translation = () => {
                         })}
                     </div>
                 </div>
+            }
         </AppContainer>
     )
 }

@@ -1,11 +1,12 @@
 import AppContainer from "../../hoc/AppContainer";
 import NavBar from "../../hoc/NavBar";
 import Table from 'react-bootstrap/Table'
-import { useHistory as history } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getStorage, clearStorage } from "../../utils/storage";
 
 const Profile = () => {
+    const history = useHistory();
     const [data, setData] = useState(null)
     const user = getStorage("name");
     const POST_URL = "http://localhost:3010/translations/"
@@ -19,7 +20,7 @@ const Profile = () => {
             history.push('/');
         }
         getMostRecentPosts();
-    }, []) 
+    }, [history]) // double check this
 
     /**
      * A function used to get the 10 most recent posts 

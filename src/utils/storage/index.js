@@ -13,6 +13,3 @@ export const setStorage = (key, value) => {
 export const clearStorage = () => {
     localStorage.clear();
 }
-
-
-// add authentication

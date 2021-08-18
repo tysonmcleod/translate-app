@@ -1,7 +1,7 @@
 import AppContainer from "../../hoc/AppContainer"
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { getStorage, setStorage, clearStorage } from "../../storage"
+import { getStorage, setStorage, clearStorage } from "../../utils/storage"
 
 const Startup = () => {
     const [name, setName] = useState("");

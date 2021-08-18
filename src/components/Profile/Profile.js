@@ -1,29 +1,28 @@
 import AppContainer from "../../hoc/AppContainer";
-import { useHistory } from "react-router-dom";
+import NavBar from "../../hoc/NavBar";
+import Table from 'react-bootstrap/Table'
+import { useHistory as history } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getStorage, clearStorage } from "../../storage";
+import { getStorage, clearStorage } from "../../utils/storage";
 
 const Profile = () => {
-    const history = useHistory();
     const [data, setData] = useState(null)
     const user = getStorage("name");
     const POST_URL = "http://localhost:3010/translations/"
     const FILTERED_POST_URL = "http://localhost:3010/translations?_sort=id&_order=desc&_limit=10&status=active&author=";
     /**
      * If the user is already logged in, redirect to the translation page.
-     * Otherwise, get the ten most recent active posts
+     * Otherwise, get the most recent active posts (limited to ten)
      */
     useEffect(() =>{
-        if(!user){
+        if(!(getStorage('name'))){
             history.push('/');
         }
-        
         getMostRecentPosts();
-        
-    }, []) // fix the warning
+    }, []) 
 
     /**
-     * A function used to get the ten most recent posts
+     * A function used to get the 10 most recent posts 
      */
     const getMostRecentPosts = async () => {
         await fetch(FILTERED_POST_URL+getStorage('name'), {
@@ -81,23 +80,37 @@ const Profile = () => {
     }
 
     return (
-        <AppContainer>
-            <div>
-                <h1 className="animate__animated animate__bounceInDown"> Welcome {user} </h1>
-                <h3> Here are your last translations: </h3>
-                <ul className="translations">
-                    {data && data.map(translation =>
-                        // wonder if we are supposed to save the actual sign translation as well?
-                        <li key={translation.id}>{translation.word} equals: {translation.word}</li> 
-                    )}
-                </ul>
-
-                <div className="buttons mt-3 ">
-                    <button onClick={handleClearPostsClick}> Clear translations</button>
-                    <button onClick={handleLogOutClick}> Log out</button>
-                </div>
-            </div>          
-        </AppContainer>
+        <main>   
+            <NavBar>
+            
+            </NavBar>     
+            <AppContainer>
+                <div className="mt-5">
+                    <h1 className="animate__animated animate__bounceInDown"> Welcome {user} </h1>
+                    <h4 className="mb-3 mt-3"> Here are your last translations: </h4>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Phrase</th>
+                                <th>Translation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data && data.map(translation =>
+                                <tr key={translation.id}>
+                                    <td>{translation.word}</td>
+                                    <td>{translation.author}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                    <div className="buttons mt-3 ">
+                        <button onClick={handleClearPostsClick}> Clear translations</button>
+                        <button onClick={handleLogOutClick}> Log out</button>
+                    </div>
+                </div>          
+            </AppContainer>
+        </main>
     )
 }
 

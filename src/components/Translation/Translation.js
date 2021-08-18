@@ -19,6 +19,9 @@ const Translation = () => {
         letters: []
     })
 
+    /**
+     * Tracks the word inputted from the user, and updates the state if it changes.
+     */
     const handleInputChange = event => {
         setWord({
             ...word,
@@ -26,6 +29,9 @@ const Translation = () => {
         })
     }
 
+    /**
+     * When the user presses the translate button, the word is split into seperate letters which will be translated, and the translation is stored in the database.
+     */
     const handleSubmit = async (event) => {
         event.preventDefault()
 

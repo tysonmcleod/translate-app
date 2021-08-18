@@ -8,12 +8,19 @@ const Startup = () => {
     const history = useHistory();
 
     const user = getStorage("name");
+
+    /**
+     * If the user is already logged in, redirect to the translation page.
+     */
     useEffect(() =>{
         if(user){
             history.push('/translation');
         }
     })
 
+    /**
+     * Tracks the name inputted from the user, and updates the state if it changes.
+     */
     const handleNameChange = event => {
         setName(event.target.value);
     }
@@ -29,7 +36,11 @@ const Startup = () => {
         return true;
     }
 
-
+    /**
+     * When the user submits their chosen name, it is firstly added to the local storage. Then we check the database to see if the name is already in there. 
+     * If it is, the user is routed to the translation page. If it is not, the name is added to the database if it is a valid name,
+     * otherwise the user is prompted to input a valid name.
+     */
     const handleSubmitNameClick = async () => {
         setStorage("name", name);
         const userInDatabase = await checkUserInDatabase();
@@ -48,7 +59,7 @@ const Startup = () => {
             history.push("/translation");
         }else{
             clearStorage('name');
-            alert('Invalid input');
+            alert('Invalid input! Please enter a valid name, consisting of only letters');
         }
     }
 

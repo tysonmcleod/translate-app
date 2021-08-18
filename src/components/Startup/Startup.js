@@ -57,9 +57,9 @@ const Startup = () => {
             <h1 className="text-center mt-5"> Welcome to the translation app</h1>
             <form className="w-25 m-auto mt-5">
                 <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder="What is your name?" />
+                <input type="text" className="form-control" placeholder="What is your name?" onChange= {handleNameChange} />
                 <div className="input-group-append">
-                    <button className="btn btn-primary" type="button">Translate</button>
+                    <button className="btn btn-primary" type="button" onClick={handleSubmitNameClick}>Translate</button>
                 </div>
             </div>
             </form>

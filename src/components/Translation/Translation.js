@@ -51,23 +51,23 @@ const Translation = () => {
 
     return (
         <AppContainer>
-            <form className="mt-3 mb-3" onSubmit={ handleSubmit }>
-                <h1> Welcome to the translation page </h1>
-                <div className="form-group mb-3">
-                    <label htmlFor="word" className="form-label">What would you like to translate?</label>
-                    <input id="word" type="text" className="form-control mb-2" onChange={ handleInputChange }/>
-                    <button type="submit" className="btn btn-primary">Translate</button>
+            <h1 className="text-center mt-5"> Welcome to the translation page </h1>
+            <form className="w-50 m-auto mt-5" onSubmit={ handleSubmit }>
+                <div className="input-group mb-3">
+                    <input id="word" type="text" className="form-control mb-2" placeholder="What would you like to translate?" onChange={ handleInputChange }/>
+                    <div className="input-group-append">
+                        <button type="submit" className="btn btn-primary">Translate</button>
+                    </div>
                 </div>
-
-                <div className="form-group mt-3">
-                    <h3>Translation</h3>
+            </form>
+            <div className="mt-3 p-4 w-75 m-auto">
+                    <h3 className="text-center">Translation</h3>
                     <div id="translationArea">
                         {word.letters.map((letter, index) => {
                             return <TranslationImage src={`./resources/individial_signs/${letter}.png`} key={index} />
                         })}
                     </div>
                 </div>
-            </form>
         </AppContainer>
     )
 }

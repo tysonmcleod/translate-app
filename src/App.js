@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'; 
+import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
 import Startup from './components/Startup/Startup'
 import NotFound from './components/NotFound/NotFound'
 import Translation from './components/Translation/Translation'
@@ -15,8 +15,8 @@ function App() {
         {/* Here are the routes: */}   
         <Switch>
           <Route path="/" exact component={ Startup } />
-          <Route path="/translation" component= { Translation }></Route>
-          <Route path="/profile" component= { Profile }></Route>
+          <Route path="/translation" component= { Translation }/>
+          <Route path="/profile" component= { Profile }/>
           <Route path="*" component={ NotFound } />         
         </Switch>
 

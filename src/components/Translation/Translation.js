@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import AppContainer from "../../hoc/AppContainer"
 import TranslationImage from "./TranslationImage";
+import { getStorage } from "../../storage"
 
 const Translation = () => {
+    const history = useHistory();
+    const user = getStorage("name");
+
+    useEffect(() =>{
+        if(!user){
+            history.push('/');
+        }
+    })
+
     const [word, setWord] = useState({
         word: '',
         letters: []
@@ -32,8 +43,8 @@ const Translation = () => {
             },
             body: JSON.stringify({
                 word: word.word,
-                //author: localStorage.getItem('name')
-                //TODO Save the user who has made the translation
+                author: getStorage('name'),
+                status: "active"
             })
         })
     }

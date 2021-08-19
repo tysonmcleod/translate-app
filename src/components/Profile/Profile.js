@@ -100,7 +100,7 @@ const Profile = () => {
                             {data && data.map(translation =>
                                 <tr key={translation.id}>
                                     <td>{translation.word}</td>
-                                    <td><TranslationArea letters={translation.word.split('')} /> </td>
+                                    <td><TranslationArea letters={translation.word.toLowerCase().split('')} /> </td>
                                 </tr>
                             )}
                         </tbody>

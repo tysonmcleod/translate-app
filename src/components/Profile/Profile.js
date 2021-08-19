@@ -19,8 +19,9 @@ const Profile = () => {
     useEffect(() =>{
         if(!(getStorage('name'))){
             history.push('/');
+        }else{
+            getMostRecentPosts();
         }
-        getMostRecentPosts();
     }, [history]) // double check this
 
     /**

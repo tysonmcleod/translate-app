@@ -40,8 +40,14 @@ const Translation = () => {
             ...word,
             letters: word.word.split('')
         })
-
-        await fetch('http://localhost:3010/translations', {
+        if(word.word.length > 40){
+            alert("word is too long ");
+            setWord({
+                word: "",
+                letters: ""
+            })
+        }else if(word.word.match(/^([a-zA-Z]+\s)*[a-zA-Z]+$/)){
+            await fetch('http://localhost:3010/translations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,6 +58,13 @@ const Translation = () => {
                 status: "active"
             })
         })
+        }else{
+            alert("Invalid input - enter a phrase consisting of only letters and max one space");
+            setWord({
+                word: "",
+                letters: ""
+            })
+        }        
     }
 
     return (

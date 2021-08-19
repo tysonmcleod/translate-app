@@ -2,6 +2,7 @@ import AppContainer from "../../hoc/AppContainer"
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getStorage, setStorage, clearStorage } from "../../utils/storage"
+import { addUser, isUserInDatabase } from '../../utils/API'
 
 const Startup = () => {
     const [name, setName] = useState("");
@@ -26,16 +27,10 @@ const Startup = () => {
     }
 
     /**
-     * A function used to check if a user exists.
+     * A function used to check if a user exists in the database.
      */
     const checkUserInDatabase = async () => {
-        const USER_URL = "https://translate-app-deluxe-db.herokuapp.com/users?name=" + getStorage('name');
-        const response = await fetch(USER_URL);
-        const names = await response.json();
-        if(names.length === 0){          
-            return false;
-        }
-        return true;
+        return await isUserInDatabase(getStorage('name'));
     }
 
     /**
@@ -49,15 +44,7 @@ const Startup = () => {
         if(userInDatabase){
             history.push("/translation");
         }else if(!userInDatabase && name.match(/^[a-zA-Z-]+$/)){
-            await fetch('https://translate-app-deluxe-db.herokuapp.com/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name 
-                })
-            })
+            await addUser(name);
             history.push("/translation");
         }else{
             clearStorage('name');
@@ -75,7 +62,7 @@ const Startup = () => {
                     <div className="input-group-append">
                         <button className="btn btn-primary" type="button" onClick={handleSubmitNameClick}>Submit</button>
                     </div>
-                </div>
+                    </div>
                 </form>
             </AppContainer>
         </main>    

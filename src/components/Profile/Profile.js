@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getStorage, clearStorage } from "../../utils/storage";
 import TranslationArea from "../Translation/TranslationArea/TranslationArea";
+import { deleteTranslation, getUsersMostRecentTranslations } from "../../utils/API";
 
 const Profile = () => {
     const history = useHistory();
     const [data, setData] = useState(null)
     const user = getStorage("name");
-    const POST_URL = "https://translate-app-deluxe-db.herokuapp.com/translations/"
-    const FILTERED_POST_URL = "https://translate-app-deluxe-db.herokuapp.com/translations?_sort=id&_order=desc&_limit=10&status=active&author=";
+
     /**
      * If the user is already logged in, redirect to the translation page.
      * Otherwise, get the most recent active posts (limited to ten)
@@ -20,53 +20,37 @@ const Profile = () => {
         if(!(getStorage('name'))){
             history.push('/');
         }else{
-            getMostRecentPosts();
+            getMostRecentTranslations();
         }
-    }, [history]) // double check this
+    }, [history])
 
     /**
-     * A function used to get the 10 most recent posts 
+     * A function used to get the user's 10 most recent posts 
      */
-    const getMostRecentPosts = async () => {
-        await fetch(FILTERED_POST_URL+getStorage('name'), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        .then(response => response.json())
-        .then(data=> {
+    const getMostRecentTranslations = async () => {
+        try {
+            const data = await getUsersMostRecentTranslations(getStorage('name'));
             setData(data);
-        })
-        .catch((error) => {
-            console.error('Error', error);
-        });
+        } catch(error) {
+            console.error('Error:', error);
+        }
     }
             
 
     /**
-     * Tracks when a user clears the most recent posts.
+     * Tracks when a user clears the most recent translations.
      * This does not delete the entries from the db, but 
      * rather marks them as inactive.
      */
-    const handleClearPostsClick = async () => {
+    const handleClearTranslationsClick = async () => {
         if(data !== null){
             for(let translation of data){
-                translation.status = "inactive";
-                await fetch(POST_URL + translation.id, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify(translation)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    setData(null)
-                })
-                .catch((error) =>{
+                try {
+                    await deleteTranslation(translation);
+                    setData(null);
+                } catch(error) {
                     console.error('Error:', error);
-                });
+                }
             }
         } 
     }
@@ -106,7 +90,7 @@ const Profile = () => {
                         </tbody>
                     </Table>
                     <div className="buttons mt-3 ">
-                        <button className="btn btn-warning" onClick={handleClearPostsClick}> Clear translations</button>
+                        <button className="btn btn-warning" onClick={handleClearTranslationsClick}> Clear translations</button>
                         <button className="btn btn-danger" onClick={handleLogOutClick}> Log out</button>
                     </div>
                 </div>          

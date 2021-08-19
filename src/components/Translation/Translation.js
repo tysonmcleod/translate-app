@@ -48,7 +48,7 @@ const Translation = () => {
                 word: "",
             })
         }else if(word.word.match(/^([a-zA-Z]+\s)*[a-zA-Z]+$/)){
-            await fetch('http://localhost:3010/translations', {
+            await fetch('https://translate-app-deluxe-db.herokuapp.com/translations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

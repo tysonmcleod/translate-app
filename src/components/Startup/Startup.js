@@ -6,7 +6,7 @@ import { getStorage, setStorage, clearStorage } from "../../utils/storage"
 const Startup = () => {
     const [name, setName] = useState("");
     const history = useHistory();
-
+    const BASE_URL = 'https://translate-app-deluxe-db.herokuapp.com/users';
     const user = getStorage("name");
 
     /**
@@ -49,7 +49,7 @@ const Startup = () => {
         if(userInDatabase){
             history.push("/translation");
         }else if(!userInDatabase && name.match(/^[a-zA-Z-]+$/)){
-            await fetch('https://translate-app-deluxe-db.herokuapp.com/users', {
+            await fetch(BASE_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

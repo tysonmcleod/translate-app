@@ -7,6 +7,7 @@ import TranslationArea from "./TranslationArea/TranslationArea";
 import TranslationForm from "./TranslationForm.js";
 
 const Translation = () => {
+    const TRANSLATION_URL = 'https://translate-app-deluxe-db.herokuapp.com/translations';
     const history = useHistory();
     const user = getStorage("name");
 
@@ -48,7 +49,7 @@ const Translation = () => {
                 word: "",
             })
         }else if(word.word.match(/^([a-zA-Z]+\s)*[a-zA-Z]+$/)){
-            await fetch('https://translate-app-deluxe-db.herokuapp.com/translations', {
+            await fetch(TRANSLATION_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -10,12 +10,12 @@ To run the app in your local environment, do the following:
 - Cd to the root of the project.
 - Run `npm install` to install dependencies.
 - Run `npm install -g json-server` to install dependencies for the API used in the app. Link to documentation: [JSON Server](https://github.com/typicode/json-server)
-- Run `npm start` to start the application.
+- Run `npm start` to start the application on port 3000.
 - Run `json-server -p 3010 data/db.json` to start the API on port 3010, which the application expects.
 
 ## Deployed application
 
-The app can be accessed at: INSERT HEROKU LINK HERE
+The app can be accessed at: [Translate App](https://translate-app-deluxe.herokuapp.com/)
 
 ## Contributors
 

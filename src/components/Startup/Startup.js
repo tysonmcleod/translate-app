@@ -29,7 +29,7 @@ const Startup = () => {
      * A function used to check if a user exists.
      */
     const checkUserInDatabase = async () => {
-        const USER_URL = "http://localhost:3010/users?name=" + getStorage('name');
+        const USER_URL = "https://translate-app-deluxe-db.herokuapp.com/users?name=" + getStorage('name');
         const response = await fetch(USER_URL);
         const names = await response.json();
         if(names.length === 0){          
@@ -49,7 +49,7 @@ const Startup = () => {
         if(userInDatabase){
             history.push("/translation");
         }else if(!userInDatabase && name.match(/^[a-zA-Z-]+$/)){
-            await fetch('http://localhost:3010/users', {
+            await fetch('https://translate-app-deluxe-db.herokuapp.com/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

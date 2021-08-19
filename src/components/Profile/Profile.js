@@ -10,8 +10,8 @@ const Profile = () => {
     const history = useHistory();
     const [data, setData] = useState(null)
     const user = getStorage("name");
-    const POST_URL = "http://localhost:3010/translations/"
-    const FILTERED_POST_URL = "http://localhost:3010/translations?_sort=id&_order=desc&_limit=10&status=active&author=";
+    const POST_URL = "https://translate-app-deluxe-db.herokuapp.com/translations/"
+    const FILTERED_POST_URL = "https://translate-app-deluxe-db.herokuapp.com/translations?_sort=id&_order=desc&_limit=10&status=active&author=";
     /**
      * If the user is already logged in, redirect to the translation page.
      * Otherwise, get the most recent active posts (limited to ten)

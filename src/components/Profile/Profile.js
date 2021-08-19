@@ -90,7 +90,7 @@ const Profile = () => {
                         </tbody>
                     </Table>
                     <div className="buttons mt-3 ">
-                        <button className="btn btn-warning" onClick={handleClearTranslationsClick}> Clear translations</button>
+                        <button className="btn btn-warning me-2" onClick={handleClearTranslationsClick}> Clear translations</button>
                         <button className="btn btn-danger" onClick={handleLogOutClick}> Log out</button>
                     </div>
                 </div>          

@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getStorage, clearStorage } from "../../utils/storage";
+import TranslationArea from "../Translation/TranslationArea/TranslationArea";
 
 const Profile = () => {
     const history = useHistory();
@@ -84,7 +85,7 @@ const Profile = () => {
         <main>   
             <NavBar/>     
             <AppContainer>
-                <div className="mt-5">
+                <div className="mt-5 mb-5">
                     <h1 className="animate__animated animate__bounceInDown"> Welcome {user} </h1>
                     <h4 className="mb-3 mt-3"> Here are your last translations: </h4>
                     <Table striped bordered hover>
@@ -98,14 +99,14 @@ const Profile = () => {
                             {data && data.map(translation =>
                                 <tr key={translation.id}>
                                     <td>{translation.word}</td>
-                                    <td>{translation.author}</td>
+                                    <td><TranslationArea letters={translation.word.split('')} /> </td>
                                 </tr>
                             )}
                         </tbody>
                     </Table>
                     <div className="buttons mt-3 ">
-                        <button onClick={handleClearPostsClick}> Clear translations</button>
-                        <button onClick={handleLogOutClick}> Log out</button>
+                        <button className="btn btn-warning" onClick={handleClearPostsClick}> Clear translations</button>
+                        <button className="btn btn-danger" onClick={handleLogOutClick}> Log out</button>
                     </div>
                 </div>          
             </AppContainer>

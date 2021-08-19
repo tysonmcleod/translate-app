@@ -1,4 +1,4 @@
-function TranslationImage(props) {
+const TranslationImage = (props) => {
     return (
         <img src={props.src} alt="" width="8%" />
     )

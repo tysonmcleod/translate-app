@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AppContainer from "../../hoc/AppContainer"
 import NavBar from "../../hoc/NavBar";
+import { addTranslation } from "../../utils/API";
 import { getStorage } from "../../utils/storage"
 import TranslationArea from "./TranslationArea/TranslationArea";
 import TranslationForm from "./TranslationForm.js";
@@ -48,18 +49,13 @@ const Translation = () => {
                 word: "",
             })
         }else if(word.word.match(/^([a-zA-Z]+\s)*[a-zA-Z]+$/)){
-            await fetch('https://translate-app-deluxe-db.herokuapp.com/translations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+            await addTranslation({
                 word: word.word,
                 author: getStorage('name'),
                 status: "active"
             })
-        })
-        }else{
+        }
+        else{
             alert("Invalid input - enter a phrase consisting of only letters and max one space");
             setWord({
                 ...word,
@@ -72,7 +68,7 @@ const Translation = () => {
         <main>
             <NavBar/> 
             <AppContainer>
-                <h1 className="text-center mt-5"> Welcome to the translation page </h1>
+                <h1 className="animate__animated animate__bounceInDown text-center mt-5"> Welcome to the translation page </h1>
                 
                 <TranslationForm word={word.word} handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
 

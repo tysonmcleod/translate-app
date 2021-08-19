@@ -55,7 +55,7 @@ const Startup = () => {
     return (
         <main>
             <AppContainer>
-                <h1 className="text-center mt-5"> Welcome to the translation app</h1>
+                <h1 className="animate__animated animate__bounceInDown text-center mt-5"> Welcome to the translation app</h1>
                 <form className="w-50 m-auto mt-5">
                     <div className="input-group mb-3">
                     <input type="text" className="form-control" placeholder="What is your name?" onChange= {handleNameChange} />

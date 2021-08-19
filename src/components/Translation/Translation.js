@@ -68,7 +68,7 @@ const Translation = () => {
         <main>
             <NavBar/> 
             <AppContainer>
-                <h1 className="text-center mt-5"> Welcome to the translation page </h1>
+                <h1 className="animate__animated animate__bounceInDown text-center mt-5"> Welcome to the translation page </h1>
                 
                 <TranslationForm word={word.word} handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
 

@@ -4,6 +4,7 @@ import AppContainer from "../../hoc/AppContainer"
 import NavBar from "../../hoc/NavBar";
 import { getStorage } from "../../utils/storage"
 import TranslationArea from "./TranslationArea/TranslationArea";
+import TranslationForm from "./TranslationForm.js";
 
 const Translation = () => {
     const history = useHistory();
@@ -72,15 +73,8 @@ const Translation = () => {
             <NavBar/> 
             <AppContainer>
                 <h1 className="text-center mt-5"> Welcome to the translation page </h1>
-                <form className="w-50 m-auto mt-5" onSubmit={ handleSubmit }>
-                    <p>What would you like to translate?</p>
-                    <div className="input-group mb-3">
-                        <input id="word" type="text" className="form-control mb-2" placeholder="Enter your text" onChange={ handleInputChange }/>
-                        <div className="input-group-append">
-                            <button type="submit" className="btn btn-primary">Translate</button>
-                        </div>
-                    </div>
-                </form>
+                
+                <TranslationForm word={word.word} handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
 
                 { word.letters.length > 0 && 
                     <div className="mt-3 p-4 w-75 m-auto">

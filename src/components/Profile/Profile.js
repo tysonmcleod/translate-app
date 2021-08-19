@@ -85,7 +85,7 @@ const Profile = () => {
         <main>   
             <NavBar/>     
             <AppContainer>
-                <div className="mt-5">
+                <div className="mt-5 mb-5">
                     <h1 className="animate__animated animate__bounceInDown"> Welcome {user} </h1>
                     <h4 className="mb-3 mt-3"> Here are your last translations: </h4>
                     <Table striped bordered hover>

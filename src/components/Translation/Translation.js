@@ -39,7 +39,7 @@ const Translation = () => {
 
         setWord({
             ...word,
-            letters: word.word.split('')
+            letters: word.word.toLowerCase().split('')
         })
         if(word.word.length > 40){
             alert("word is too long ");
